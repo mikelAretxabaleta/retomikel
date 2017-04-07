@@ -220,23 +220,6 @@ BEGIN
 END;
 
 
---cuidado con esta
-CREATE OR REPLACE PROCEDURE actualizarConducen(TRABAJADORES_ID2 NUMBER, VEHICULOS_ID2 NUMBER, FECHA2 DATE)
-IS
-BEGIN
-
-UPDATE conducen
-SET 
-  TRABAJADORES fecha=fecha2, vehiculos_id=vehiculos_id2 where trabajadores_id=trabajadores_id2;
-
-  COMMIT;
-
-END;
-
-
-
-
-
 
 
 
@@ -276,15 +259,4 @@ BEGIN
 END;
 
 
---cuidado con esta
-CREATE OR REPLACE PROCEDURE actualizarPartes(FECHA2 DATE, KMINICIAL2 NUMBER, KMFINAL2 NUMBER, GASTOSPEAJE2 NUMBER, GASTOSDIETAS2 NUMBER, GASTOSCOMBUSTIBLE2 NUMBER, OTROSGASTOS2 NUMBER, INCIDENCIAS2 VARCHAR2, ESTADO2 VARCHAR2, VALIDADO2 VARCHAR2, TRABAJADORES_ID2 NUMBER)
-IS
-BEGIN
 
-UPDATE conducen
-SET 
-  TRABAJADORES KMINICIAL=kminicial2, KMFINAL=kmfinal2, GASTOSPEAJE=gastospeaje2, GASTOSDIETAS=gastosdietas2, GASTOSCOMBUSTIBLE=gastoscombustible2, OTROSGASTOS=otrosgastos2, INCIDENCIAS=incidencias2, ESTADO=estado2, VALIDADO=validado2 where trabajadores_id=trabajadores_id2 and fecha=fecha2;
-
-  COMMIT;
-
-END;
