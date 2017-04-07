@@ -387,7 +387,7 @@ public GestionCentros() {
 		
 		Connection conexion;	
 	try {
-		conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+		conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	
         String sql2="{call insertarCentros (?,?,?,?,?,?,?,?)}";
@@ -427,7 +427,7 @@ public GestionCentros() {
 		
 		Connection conexion;	
 	try {
-		conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+		conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	
         String sql2="{call eliminarCentro (?)}";
@@ -459,7 +459,7 @@ public GestionCentros() {
         private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
                 Connection conexion;	
 	try {
-		conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+		conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	
         String sql2="{call actualizarCentro (?,?,?,?,?,?,?,?)}";

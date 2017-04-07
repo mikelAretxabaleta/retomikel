@@ -189,7 +189,7 @@ public static void actualizarCentros(){
 public static void verCentros() throws ClassNotFoundException, SQLException{	
 	
 	Class.forName("oracle.jdbc.driver.OracleDriver");
-	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	String sql="{call seleccionarCentros (?)}";
         
@@ -226,7 +226,7 @@ public static void verCentros() throws ClassNotFoundException, SQLException{
 public static void verTrabajadores() throws ClassNotFoundException, SQLException{	
 	
 	Class.forName("oracle.jdbc.driver.OracleDriver");
-	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	String sql="{call seleccionarTrabajadores (?)}";
         

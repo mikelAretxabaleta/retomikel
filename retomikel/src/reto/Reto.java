@@ -43,7 +43,7 @@ public static void actualizar(){
 public static void verViajes() throws ClassNotFoundException, SQLException{	
 	
 	Class.forName("oracle.jdbc.driver.OracleDriver");
-	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	String sql="{call seleccionarViajes (?)}";
         
