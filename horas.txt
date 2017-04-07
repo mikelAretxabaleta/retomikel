@@ -1,0 +1,8 @@
+create table horas(
+horainicial varchar2(10),
+horafinal varchar2(10));
+
+insert  into horas  values('2:40', '23:30');
+
+SELECT sum(extract (hour from (to_timestamp(horafinal, 'HH24:MI') - to_timestamp(horainicial,  'HH24:MI')))) AS difference
+FROM horas;
