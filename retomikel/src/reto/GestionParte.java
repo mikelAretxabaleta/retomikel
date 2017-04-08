@@ -21,13 +21,13 @@ import javax.swing.JTextField;
  *
  * @author m
  */
-public class AbrirParte extends javax.swing.JFrame {
+public class GestionParte extends javax.swing.JFrame {
 
 InsertarViaje iv=new InsertarViaje();
 /**
  * Creates new form AbrirParte
  */
-public AbrirParte() {
+public GestionParte() {
 	initComponents();
 }
 
@@ -147,7 +147,7 @@ public AbrirParte() {
         private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
                 Connection conexion;	
 	try {
-		conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
+		conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
 	
 	
         String sql="{call eliminarViaje (?)}";
@@ -160,15 +160,15 @@ public AbrirParte() {
 	llamada.close();
 	conexion.close();
 	} catch (SQLException ex) {
-		Logger.getLogger(AbrirParte.class.getName()).log(Level.SEVERE, null, ex);
+		Logger.getLogger(GestionParte.class.getName()).log(Level.SEVERE, null, ex);
 	}
-	Reto.actualizar();
+	Logistica.actualizar();
 	try {
-		Reto.verViajes();
+		Logistica.verViajes();
 	} catch (ClassNotFoundException ex) {
-		Logger.getLogger(AbrirParte.class.getName()).log(Level.SEVERE, null, ex);
+		Logger.getLogger(GestionParte.class.getName()).log(Level.SEVERE, null, ex);
 	} catch (SQLException ex) {
-		Logger.getLogger(AbrirParte.class.getName()).log(Level.SEVERE, null, ex);
+		Logger.getLogger(GestionParte.class.getName()).log(Level.SEVERE, null, ex);
 	}
         }//GEN-LAST:event_jButton3MouseClicked
 
@@ -189,20 +189,21 @@ public static void main(String args[]) {
 			}
 		}
 	} catch (ClassNotFoundException ex) {
-		java.util.logging.Logger.getLogger(AbrirParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		java.util.logging.Logger.getLogger(GestionParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 	} catch (InstantiationException ex) {
-		java.util.logging.Logger.getLogger(AbrirParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		java.util.logging.Logger.getLogger(GestionParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 	} catch (IllegalAccessException ex) {
-		java.util.logging.Logger.getLogger(AbrirParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		java.util.logging.Logger.getLogger(GestionParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 	} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-		java.util.logging.Logger.getLogger(AbrirParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		java.util.logging.Logger.getLogger(GestionParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 	}
+	//</editor-fold>
 	//</editor-fold>
 
 	/* Create and display the form */
 	java.awt.EventQueue.invokeLater(new Runnable() {
 	public void run() {
-		new AbrirParte().setVisible(true);
+		new GestionParte().setVisible(true);
 		
 	}
 	});

@@ -129,7 +129,7 @@ public InsertarViaje() {
 		
 		Connection conexion;	
 	try {
-		conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
+		conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
 	
 	
         String sql2="{call insertarViajes (?,?,?)}";
@@ -150,8 +150,8 @@ public InsertarViaje() {
 	
 	
 	
-	Reto.actualizar();
-	Reto.verViajes();
+	Logistica.actualizar();
+	Logistica.verViajes();
 	
 	
 	} catch (SQLException ex) {

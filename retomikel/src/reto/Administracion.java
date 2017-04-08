@@ -16,24 +16,28 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import oracle.jdbc.OracleTypes;
-import static reto.Reto.ap;
-import static reto.Reto.model;
+import static reto.Logistica.ap;
+import static reto.Logistica.model;
 
 /**
  *
  * @author m
  */
-public class Gestion extends javax.swing.JFrame {
+public class Administracion extends javax.swing.JFrame {
 
 public static GestionCentros gc=new GestionCentros();
 public static GestionTrabajadores gt=new GestionTrabajadores();
+public static GestionVehiculos gv=new GestionVehiculos();
+public static GestionConducen gco=new GestionConducen();
 
 public static DefaultTableModel model= (DefaultTableModel) gc.getjTable1().getModel();
 public static DefaultTableModel model2= (DefaultTableModel) gt.getjTable1().getModel();
+public static DefaultTableModel model3= (DefaultTableModel) gv.getjTable1().getModel();
+public static DefaultTableModel model4= (DefaultTableModel) gco.getjTable1().getModel();
 /**
  * Creates new form Gestionar
  */
-public Gestion() {
+public Administracion() {
 	initComponents();
 }
 
@@ -50,6 +54,8 @@ public Gestion() {
                 jButton2 = new javax.swing.JButton();
                 jButton3 = new javax.swing.JButton();
                 jButton4 = new javax.swing.JButton();
+                jButton5 = new javax.swing.JButton();
+                jButton6 = new javax.swing.JButton();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
                 setTitle("GESTION DE LA EMPRESA");
@@ -74,8 +80,22 @@ public Gestion() {
                 });
 
                 jButton3.setText("VEHICULOS");
+                jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                jButton3MouseClicked(evt);
+                        }
+                });
 
                 jButton4.setText("CONDUCEN");
+                jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                jButton4MouseClicked(evt);
+                        }
+                });
+
+                jButton5.setText("USUARIOS");
+
+                jButton6.setText("PARTES");
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
@@ -83,13 +103,15 @@ public Gestion() {
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
-                                        .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 303, Short.MAX_VALUE)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-                                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
                 layout.setVerticalGroup(
@@ -103,6 +125,10 @@ public Gestion() {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                                         .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 );
 
@@ -119,7 +145,7 @@ public Gestion() {
 	try {
 		verCentros();
 	} catch (ClassNotFoundException | SQLException ex) {
-		Logger.getLogger(Gestion.class.getName()).log(Level.SEVERE, null, ex);
+		Logger.getLogger(Administracion.class.getName()).log(Level.SEVERE, null, ex);
 	}
 		
 		
@@ -131,9 +157,32 @@ public Gestion() {
 	try {
 		verTrabajadores();
 	} catch (ClassNotFoundException | SQLException ex) {
-		Logger.getLogger(Gestion.class.getName()).log(Level.SEVERE, null, ex);
+		Logger.getLogger(Administracion.class.getName()).log(Level.SEVERE, null, ex);
 	}
         }//GEN-LAST:event_jButton2MouseClicked
+
+        private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+                
+		           model3.setRowCount(0);
+		gv.setVisible(true);
+	try {
+		verVehiculos();
+	} catch (ClassNotFoundException | SQLException ex) {
+		Logger.getLogger(Administracion.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	
+		
+        }//GEN-LAST:event_jButton3MouseClicked
+
+        private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+                model4.setRowCount(0);
+		gco.setVisible(true);
+	try {
+		verConducen();
+	} catch (ClassNotFoundException | SQLException ex) {
+		Logger.getLogger(Administracion.class.getName()).log(Level.SEVERE, null, ex);
+	}
+        }//GEN-LAST:event_jButton4MouseClicked
 
 /**
  * @param args the command line arguments
@@ -152,21 +201,23 @@ public static void main(String args[]) {
 			}
 		}
 	} catch (ClassNotFoundException ex) {
-		java.util.logging.Logger.getLogger(Gestion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		java.util.logging.Logger.getLogger(Administracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 	} catch (InstantiationException ex) {
-		java.util.logging.Logger.getLogger(Gestion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		java.util.logging.Logger.getLogger(Administracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 	} catch (IllegalAccessException ex) {
-		java.util.logging.Logger.getLogger(Gestion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		java.util.logging.Logger.getLogger(Administracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 	} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-		java.util.logging.Logger.getLogger(Gestion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		java.util.logging.Logger.getLogger(Administracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 	}
+	//</editor-fold>
+	//</editor-fold>
 	//</editor-fold>
 	//</editor-fold>
 
 	/* Create and display the form */
 	java.awt.EventQueue.invokeLater(new Runnable() {
 	public void run() {
-		new Gestion().setVisible(true);
+		new Administracion().setVisible(true);
 	}
 	});
 }
@@ -176,6 +227,8 @@ public static void main(String args[]) {
         private javax.swing.JButton jButton2;
         private javax.swing.JButton jButton3;
         private javax.swing.JButton jButton4;
+        private javax.swing.JButton jButton5;
+        private javax.swing.JButton jButton6;
         // End of variables declaration//GEN-END:variables
 public static void actualizarCentros(){
                  model.setRowCount(0);
@@ -186,10 +239,38 @@ public static void actualizarCentros(){
 	            
 
 }
+
+public static void actualizarTrabajadores(){
+                 model2.setRowCount(0);
+                    
+	     //if(model.getRowCount()>0)
+		//for (int i=0;i<model.getRowCount();i+=1){
+		//model.removeRow(i);}
+	            
+
+}
+public static void actualizarVehiculos(){
+                 model3.setRowCount(0);
+                    
+	     //if(model.getRowCount()>0)
+		//for (int i=0;i<model.getRowCount();i+=1){
+		//model.removeRow(i);}
+	            
+
+}
+public static void actualizarConducen(){
+                 model4.setRowCount(0);
+                    
+	     //if(model.getRowCount()>0)
+		//for (int i=0;i<model.getRowCount();i+=1){
+		//model.removeRow(i);}
+	            
+
+}
 public static void verCentros() throws ClassNotFoundException, SQLException{	
 	
 	Class.forName("oracle.jdbc.driver.OracleDriver");
-	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
+	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
 	
 	String sql="{call seleccionarCentros (?)}";
         
@@ -226,7 +307,7 @@ public static void verCentros() throws ClassNotFoundException, SQLException{
 public static void verTrabajadores() throws ClassNotFoundException, SQLException{	
 	
 	Class.forName("oracle.jdbc.driver.OracleDriver");
-	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
+	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
 	
 	String sql="{call seleccionarTrabajadores (?)}";
         
@@ -257,13 +338,83 @@ public static void verTrabajadores() throws ClassNotFoundException, SQLException
 	BigDecimal resultado14 = rs.getBigDecimal(14);
 	BigDecimal resultado15 = rs.getBigDecimal(15);
 	BigDecimal resultado16 = rs.getBigDecimal(16);
-	Date resultado17=rs.getDate(17);
+	String resultado17 = rs.getString(17);
 	BigDecimal resultado18 = rs.getBigDecimal(18);
 	
         
 	model2.addRow(new Object[]{resultado1,resultado2,resultado3,resultado4,resultado5,resultado6,resultado7,
 		resultado8, resultado9,resultado10,resultado11,resultado12,resultado13,resultado14,resultado15,
 	        resultado16,resultado17,resultado18});
+	
+	
+	}
+	
+	rs.close();
+	llamada.close();
+	conexion.close();
+}
+
+public static void verVehiculos() throws ClassNotFoundException, SQLException{	
+	
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+	
+	String sql="{call seleccionarVehiculo (?)}";
+        
+	CallableStatement llamada = conexion.prepareCall(sql);
+	
+	llamada.registerOutParameter("c", OracleTypes.CURSOR);
+	
+	llamada.executeUpdate();
+	
+	ResultSet rs = (ResultSet) llamada.getObject("c");
+	
+	
+	while (rs.next()) {
+	
+	BigDecimal resultado1 = rs.getBigDecimal(1);
+	String resultado2 = rs.getString(2);
+	String resultado3 = rs.getString(3);
+	String resultado4 = rs.getString(4);
+	
+	
+        
+	model3.addRow(new Object[]{resultado1,resultado2,resultado3,resultado4});
+	
+	
+	}
+	
+	rs.close();
+	llamada.close();
+	conexion.close();
+}
+
+public static void verConducen() throws ClassNotFoundException, SQLException{	
+	
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+	
+	String sql="{call seleccionarConducen (?)}";
+        
+	CallableStatement llamada = conexion.prepareCall(sql);
+	
+	llamada.registerOutParameter("c", OracleTypes.CURSOR);
+	
+	llamada.executeUpdate();
+	
+	ResultSet rs = (ResultSet) llamada.getObject("c");
+	
+	
+	while (rs.next()) {
+	
+	BigDecimal resultado1 = rs.getBigDecimal(1);
+	BigDecimal resultado2 = rs.getBigDecimal(2);
+	String resultado3 = rs.getString(3);
+	
+	
+	
+        
+	model4.addRow(new Object[]{resultado1,resultado2,resultado3});
 	
 	
 	}

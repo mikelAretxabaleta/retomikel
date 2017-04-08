@@ -14,9 +14,9 @@ import oracle.jdbc.OracleTypes;
  *
  * @author AliensOfMars
  */
-public class Reto {
+public class Logistica {
 
-public static AbrirParte ap = new AbrirParte();
+public static GestionParte ap = new GestionParte();
 public static DefaultTableModel model = (DefaultTableModel) ap.getjTable1().getModel();
 
 /**
@@ -40,10 +40,13 @@ public static void actualizar(){
 	            
 
 }
+
+
+
 public static void verViajes() throws ClassNotFoundException, SQLException{	
 	
 	Class.forName("oracle.jdbc.driver.OracleDriver");
-	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
+	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
 	
 	String sql="{call seleccionarViajes (?)}";
         
