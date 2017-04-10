@@ -49,14 +49,23 @@ public InsertarViaje() {
                 jTextField4 = new javax.swing.JTextField();
                 jLabel5 = new javax.swing.JLabel();
                 jTextField5 = new javax.swing.JTextField();
+                jLabel1 = new javax.swing.JLabel();
+                jTextField1 = new javax.swing.JTextField();
+                jLabel4 = new javax.swing.JLabel();
+                jTextField2 = new javax.swing.JTextField();
 
-                setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+                setTitle("INSERTAR VIAJES");
 
                 jLabel2.setText("Hora Inicio:");
 
                 jLabel3.setText("Hora Fin:");
 
                 jButton1.setText("Volver");
+                jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                jButton1MouseClicked(evt);
+                        }
+                });
 
                 jButton2.setText("Añadir");
                 jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -67,6 +76,10 @@ public InsertarViaje() {
 
                 jLabel5.setText("ID Trabajador:");
 
+                jLabel1.setText("ID:");
+
+                jLabel4.setText("Fecha:");
+
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
                 layout.setHorizontalGroup(
@@ -74,12 +87,6 @@ public InsertarViaje() {
                         .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                                .addGap(187, 187, 187)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jButton1)
-                                                        .addComponent(jButton2))
-                                                .addGap(0, 0, Short.MAX_VALUE))
                                         .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(layout.createSequentialGroup()
@@ -95,12 +102,32 @@ public InsertarViaje() {
                                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addComponent(jTextField4)
                                                                         .addComponent(jTextField3))))
-                                                .addContainerGap())))
+                                                .addContainerGap())
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(187, 187, 187)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(jButton1)
+                                                                        .addComponent(jButton2)))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(jLabel4)
+                                                                .addGap(18, 18, 18)
+                                                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addGap(0, 0, Short.MAX_VALUE))))
                 );
                 layout.setVerticalGroup(
                         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
+                                .addGap(9, 9, 9)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel2)
                                         .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -112,11 +139,15 @@ public InsertarViaje() {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel5)
                                         .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(222, 222, 222)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(167, 167, 167)
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2)
-                                .addContainerGap(80, Short.MAX_VALUE))
+                                .addContainerGap(46, Short.MAX_VALUE))
                 );
 
                 pack();
@@ -129,18 +160,19 @@ public InsertarViaje() {
 		
 		Connection conexion;	
 	try {
-		conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+		conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	
-        String sql2="{call insertarViajes (?,?,?)}";
+        String sql2="{call insertarViajes (?,?,?, ?,?)}";
 	CallableStatement llamada = conexion.prepareCall(sql2);
 
+	llamada.setInt(1,Integer.parseInt(getjTextField1().getText()));
+	llamada.setString(2,(getjTextField3().getText()));
+	llamada.setString(3,(getjTextField4().getText()));
 	
-	llamada.setString("HORAINICIAL",(getjTextField3().getText()));
-	llamada.setString("HORAFINAL",(getjTextField4().getText()));
 	
-	
-	llamada.setInt("TRABAJADORES_ID",Integer.parseInt(getjTextField5().getText()));
+	llamada.setInt(4,Integer.parseInt(getjTextField5().getText()));
+	llamada.setString(5,(getjTextField2().getText()));
 	
 	
 	llamada.executeUpdate();
@@ -161,6 +193,10 @@ public InsertarViaje() {
 		Logger.getLogger(InsertarViaje.class.getName()).log(Level.SEVERE, null, ex);
 	} 
         }//GEN-LAST:event_jButton2MouseClicked
+
+        private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+               
+        }//GEN-LAST:event_jButton1MouseClicked
 
 /**
  * @param args the command line arguments
@@ -205,9 +241,13 @@ public static void main(String args[]) {
         // Variables declaration - do not modify//GEN-BEGIN:variables
         private javax.swing.JButton jButton1;
         private javax.swing.JButton jButton2;
+        private javax.swing.JLabel jLabel1;
         private javax.swing.JLabel jLabel2;
         private javax.swing.JLabel jLabel3;
+        private javax.swing.JLabel jLabel4;
         private javax.swing.JLabel jLabel5;
+        private javax.swing.JTextField jTextField1;
+        private javax.swing.JTextField jTextField2;
         private javax.swing.JTextField jTextField3;
         private javax.swing.JTextField jTextField4;
         private javax.swing.JTextField jTextField5;
@@ -227,6 +267,14 @@ public static void main(String args[]) {
 
 	public JTextField getjTextField5() {
 		return jTextField5;
+	}
+
+	public JTextField getjTextField1() {
+		return jTextField1;
+	}
+
+	public JTextField getjTextField2() {
+		return jTextField2;
 	}
 
 	

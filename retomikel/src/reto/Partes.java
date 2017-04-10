@@ -21,13 +21,14 @@ import javax.swing.JTextField;
  *
  * @author m
  */
-public class GestionParte extends javax.swing.JFrame {
+public class Partes extends javax.swing.JFrame {
 
 InsertarViaje iv=new InsertarViaje();
+CerrarParte cp=new CerrarParte();
 /**
  * Creates new form AbrirParte
  */
-public GestionParte() {
+public Partes() {
 	initComponents();
 }
 
@@ -49,20 +50,21 @@ public GestionParte() {
                 jButton3 = new javax.swing.JButton();
 
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+                setTitle("PARTES");
 
                 jTable1.setModel(new javax.swing.table.DefaultTableModel(
                         new Object [][] {
 
                         },
                         new String [] {
-                                "ID", "Hora Inicial", "Hora Final", "ID Transportista", "Fecha", "Eliminar"
+                                "ID", "Hora Inicial", "Hora Final", "ID Transportista", "Fecha"
                         }
                 ) {
                         Class[] types = new Class [] {
-                                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+                                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
                         };
                         boolean[] canEdit = new boolean [] {
-                                false, false, false, true, false, false
+                                false, false, false, false, false
                         };
 
                         public Class getColumnClass(int columnIndex) {
@@ -78,6 +80,11 @@ public GestionParte() {
                 jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
                 jButton1.setText("Cerrar Parte");
+                jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                jButton1MouseClicked(evt);
+                        }
+                });
 
                 jButton2.setText("Añadir");
                 jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -147,7 +154,7 @@ public GestionParte() {
         private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
                 Connection conexion;	
 	try {
-		conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+		conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	
         String sql="{call eliminarViaje (?)}";
@@ -160,17 +167,22 @@ public GestionParte() {
 	llamada.close();
 	conexion.close();
 	} catch (SQLException ex) {
-		Logger.getLogger(GestionParte.class.getName()).log(Level.SEVERE, null, ex);
+		Logger.getLogger(Partes.class.getName()).log(Level.SEVERE, null, ex);
 	}
 	Logistica.actualizar();
 	try {
 		Logistica.verViajes();
 	} catch (ClassNotFoundException ex) {
-		Logger.getLogger(GestionParte.class.getName()).log(Level.SEVERE, null, ex);
+		Logger.getLogger(Partes.class.getName()).log(Level.SEVERE, null, ex);
 	} catch (SQLException ex) {
-		Logger.getLogger(GestionParte.class.getName()).log(Level.SEVERE, null, ex);
+		Logger.getLogger(Partes.class.getName()).log(Level.SEVERE, null, ex);
 	}
         }//GEN-LAST:event_jButton3MouseClicked
+
+        private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+                
+		cp.setVisible(true);
+        }//GEN-LAST:event_jButton1MouseClicked
 
 /**
  * @param args the command line arguments
@@ -189,21 +201,23 @@ public static void main(String args[]) {
 			}
 		}
 	} catch (ClassNotFoundException ex) {
-		java.util.logging.Logger.getLogger(GestionParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		java.util.logging.Logger.getLogger(Partes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 	} catch (InstantiationException ex) {
-		java.util.logging.Logger.getLogger(GestionParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		java.util.logging.Logger.getLogger(Partes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 	} catch (IllegalAccessException ex) {
-		java.util.logging.Logger.getLogger(GestionParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		java.util.logging.Logger.getLogger(Partes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 	} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-		java.util.logging.Logger.getLogger(GestionParte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+		java.util.logging.Logger.getLogger(Partes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
 	}
+	//</editor-fold>
+	//</editor-fold>
 	//</editor-fold>
 	//</editor-fold>
 
 	/* Create and display the form */
 	java.awt.EventQueue.invokeLater(new Runnable() {
 	public void run() {
-		new GestionParte().setVisible(true);
+		new Partes().setVisible(true);
 		
 	}
 	});

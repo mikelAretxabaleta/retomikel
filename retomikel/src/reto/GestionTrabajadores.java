@@ -607,7 +607,7 @@ public GestionTrabajadores() {
 		
 		Connection conexion;	
 	try {
-		conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+		conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	PreparedStatement ps;
 	ps = conexion.prepareStatement("insert into trabajadores values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -657,7 +657,7 @@ public GestionTrabajadores() {
                 
 			Connection conexion;	
 	try {
-		conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+		conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	PreparedStatement ps;
 	ps = conexion.prepareStatement("delete from trabajadores where id= (?)");
@@ -692,7 +692,7 @@ public GestionTrabajadores() {
         private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
                 Connection conexion;	
 	try {
-		conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+		conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	PreparedStatement ps;
 	ps = conexion.prepareStatement("update trabajadores set dni=(?), nombre =?,primerapellido=?,segundoapellido=?,"

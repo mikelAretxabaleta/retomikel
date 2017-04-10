@@ -395,7 +395,7 @@ public GestionCentros() {
 		
 		Connection conexion;	
 	try {
-		conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+		conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	
         String sql2="{call insertarCentros (?,?,?,?,?,?,?,?)}";
@@ -435,7 +435,7 @@ public GestionCentros() {
 		
 		Connection conexion;	
 	try {
-		conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+		conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	
         String sql2="{call eliminarCentro (?)}";
@@ -449,15 +449,15 @@ public GestionCentros() {
 	llamada.close();
 	conexion.close();
 	} catch (SQLException ex) {
-		Logger.getLogger(GestionParte.class.getName()).log(Level.SEVERE, null, ex);
+		Logger.getLogger(Partes.class.getName()).log(Level.SEVERE, null, ex);
 	}
 	Administracion.actualizarCentros();
 	try {
 		Administracion.verCentros();
 	} catch (ClassNotFoundException ex) {
-		Logger.getLogger(GestionParte.class.getName()).log(Level.SEVERE, null, ex);
+		Logger.getLogger(Partes.class.getName()).log(Level.SEVERE, null, ex);
 	} catch (SQLException ex) {
-		Logger.getLogger(GestionParte.class.getName()).log(Level.SEVERE, null, ex);
+		Logger.getLogger(Partes.class.getName()).log(Level.SEVERE, null, ex);
 	}
 		
 		
@@ -467,7 +467,7 @@ public GestionCentros() {
         private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
                 Connection conexion;	
 	try {
-		conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+		conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	
         String sql2="{call actualizarCentro (?,?,?,?,?,?,?,?)}";

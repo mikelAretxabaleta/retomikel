@@ -29,11 +29,15 @@ public static GestionCentros gc=new GestionCentros();
 public static GestionTrabajadores gt=new GestionTrabajadores();
 public static GestionVehiculos gv=new GestionVehiculos();
 public static GestionConducen gco=new GestionConducen();
+public static GestionUsuarios gu=new GestionUsuarios();
+public static GestionPartes gp=new GestionPartes();
 
 public static DefaultTableModel model= (DefaultTableModel) gc.getjTable1().getModel();
 public static DefaultTableModel model2= (DefaultTableModel) gt.getjTable1().getModel();
 public static DefaultTableModel model3= (DefaultTableModel) gv.getjTable1().getModel();
 public static DefaultTableModel model4= (DefaultTableModel) gco.getjTable1().getModel();
+public static DefaultTableModel model5= (DefaultTableModel) gu.getjTable1().getModel();
+public static DefaultTableModel model6= (DefaultTableModel) gp.getjTable1().getModel();
 /**
  * Creates new form Gestionar
  */
@@ -94,8 +98,18 @@ public Administracion() {
                 });
 
                 jButton5.setText("USUARIOS");
+                jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                jButton5MouseClicked(evt);
+                        }
+                });
 
                 jButton6.setText("PARTES");
+                jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+                        public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                jButton6MouseClicked(evt);
+                        }
+                });
 
                 javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                 getContentPane().setLayout(layout);
@@ -184,6 +198,27 @@ public Administracion() {
 	}
         }//GEN-LAST:event_jButton4MouseClicked
 
+        private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+                
+		  model5.setRowCount(0);
+		gu.setVisible(true);
+	try {
+		verUsuarios();
+	} catch (ClassNotFoundException | SQLException ex) {
+		Logger.getLogger(Administracion.class.getName()).log(Level.SEVERE, null, ex);
+	}
+        }//GEN-LAST:event_jButton5MouseClicked
+
+        private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+                model6.setRowCount(0);
+		gp.setVisible(true);
+	try {
+		verPartes();
+	} catch (ClassNotFoundException | SQLException ex) {
+		Logger.getLogger(Administracion.class.getName()).log(Level.SEVERE, null, ex);
+	}
+        }//GEN-LAST:event_jButton6MouseClicked
+
 /**
  * @param args the command line arguments
  */
@@ -267,10 +302,28 @@ public static void actualizarConducen(){
 	            
 
 }
+public static void actualizarUsuarios(){
+                 model5.setRowCount(0);
+                    
+	     //if(model.getRowCount()>0)
+		//for (int i=0;i<model.getRowCount();i+=1){
+		//model.removeRow(i);}
+	            
+
+}
+public static void actualizarPartes(){
+                 model5.setRowCount(0);
+                    
+	     //if(model.getRowCount()>0)
+		//for (int i=0;i<model.getRowCount();i+=1){
+		//model.removeRow(i);}
+	            
+
+}
 public static void verCentros() throws ClassNotFoundException, SQLException{	
 	
 	Class.forName("oracle.jdbc.driver.OracleDriver");
-	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	String sql="{call seleccionarCentros (?)}";
         
@@ -307,7 +360,7 @@ public static void verCentros() throws ClassNotFoundException, SQLException{
 public static void verTrabajadores() throws ClassNotFoundException, SQLException{	
 	
 	Class.forName("oracle.jdbc.driver.OracleDriver");
-	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	String sql="{call seleccionarTrabajadores (?)}";
         
@@ -357,7 +410,7 @@ public static void verTrabajadores() throws ClassNotFoundException, SQLException
 public static void verVehiculos() throws ClassNotFoundException, SQLException{	
 	
 	Class.forName("oracle.jdbc.driver.OracleDriver");
-	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	String sql="{call seleccionarVehiculo (?)}";
         
@@ -392,7 +445,7 @@ public static void verVehiculos() throws ClassNotFoundException, SQLException{
 public static void verConducen() throws ClassNotFoundException, SQLException{	
 	
 	Class.forName("oracle.jdbc.driver.OracleDriver");
-	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "reto", "dragon13");
+	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
 	
 	String sql="{call seleccionarConducen (?)}";
         
@@ -423,5 +476,89 @@ public static void verConducen() throws ClassNotFoundException, SQLException{
 	llamada.close();
 	conexion.close();
 }
+
+public static void verUsuarios() throws ClassNotFoundException, SQLException{	
+	
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
+	
+	String sql="{call seleccionarUsuarios (?)}";
+        
+	CallableStatement llamada = conexion.prepareCall(sql);
+	
+	llamada.registerOutParameter("c", OracleTypes.CURSOR);
+	
+	llamada.executeUpdate();
+	
+	ResultSet rs = (ResultSet) llamada.getObject("c");
+	
+	
+	while (rs.next()) {
+	
+	String resultado1 = rs.getString(1);
+	String resultado2 = rs.getString(2);
+	BigDecimal resultado3 = rs.getBigDecimal(3);
+	
+	
+	
+	
+        
+	model5.addRow(new Object[]{resultado1,resultado2,resultado3});
+	
+	
+	}
+	
+	rs.close();
+	llamada.close();
+	conexion.close();
+}
+
+public static void verPartes() throws ClassNotFoundException, SQLException{	
+	
+	Class.forName("oracle.jdbc.driver.OracleDriver");
+	Connection conexion = DriverManager.getConnection("jdbc:oracle:thin:@SrvOracle:1521:orcl", "noc03", "noc03");
+	
+	String sql="{call seleccionarPartes (?)}";
+        
+	CallableStatement llamada = conexion.prepareCall(sql);
+	
+	llamada.registerOutParameter("c", OracleTypes.CURSOR);
+	
+	llamada.executeUpdate();
+	
+	ResultSet rs = (ResultSet) llamada.getObject("c");
+	
+	
+	while (rs.next()) {
+	
+	String resultado1 = rs.getString(1);
+	BigDecimal resultado2 = rs.getBigDecimal(2);
+	BigDecimal resultado3 = rs.getBigDecimal(3);
+	BigDecimal resultado4 = rs.getBigDecimal(4);
+	BigDecimal resultado5 = rs.getBigDecimal(5);
+	BigDecimal resultado6 = rs.getBigDecimal(6);
+	BigDecimal resultado7 = rs.getBigDecimal(7);
+	String resultado8 = rs.getString(8);
+	String resultado9 = rs.getString(9);
+	String resultado10 = rs.getString(10);
+	BigDecimal resultado11 = rs.getBigDecimal(11);
+	
+	
+	
+	
+	
+	
+        
+	model6.addRow(new Object[]{resultado1,resultado2,resultado3,resultado4,resultado5,resultado6,resultado7,resultado8,resultado9,resultado10,resultado11});
+	
+	
+	}
+	
+	rs.close();
+	llamada.close();
+	conexion.close();
+}
+
+
 
 }
